@@ -37,7 +37,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for path in styles.css script.js logo.png robots.txt sitemap.xml site.webmanifest; do
+          for path in styles.css script.js logo.png robots.txt sitemap.xml site.webmanifest tajweed.html hadith.html seerah.html arabic.html education.html; do
             curl --fail --silent --show-error --location \
               --retry 2 --retry-delay 2 --connect-timeout 10 --max-time 20 \
               --output /dev/null "https://altajweed.com/${path}?slo-check=1"
