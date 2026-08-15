@@ -1,0 +1,13 @@
+{
+  "name": "التجويد",
+  "short_name": "التجويد",
+  "description": "دروس مبسطة وتطبيقات عملية لتعلّم أحكام التجويد.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8f5ed",
+  "theme_color": "#123c34",
+  "icons": [{"src":"/logo.png","sizes":"96x96","type":"image/png","purpose":"any"}]
+}
