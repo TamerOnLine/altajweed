@@ -1,0 +1,51 @@
+name: SLO Monitor
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: slo-monitor
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    name: Availability, latency and integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check homepage availability and latency
+        shell: bash
+        run: |
+          set -euo pipefail
+          result="$(curl --fail --silent --show-error --location \
+            --retry 2 --retry-delay 2 --connect-timeout 10 --max-time 20 \
+            --output homepage.html --write-out '%{http_code} %{time_total}' \
+            'https://altajweed.com/?slo-check=1')"
+          status="${result%% *}"
+          seconds="${result##* }"
+          test "$status" -ge 200 && test "$status" -lt 300
+          awk -v value="$seconds" 'BEGIN { exit !(value <= 1.5) }'
+          grep -q 'تعلّم أحكام التجويد' homepage.html
+          grep -q 'class="brand-logo"' homepage.html
+
+      - name: Check critical assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in styles.css script.js logo.png robots.txt sitemap.xml site.webmanifest; do
+            curl --fail --silent --show-error --location \
+              --retry 2 --retry-delay 2 --connect-timeout 10 --max-time 20 \
+              --output /dev/null "https://altajweed.com/${path}?slo-check=1"
+          done
+
+      - name: Validate SEO endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location 'https://altajweed.com/robots.txt?slo-check=1' | grep -q 'Sitemap: https://altajweed.com/sitemap.xml'
+          curl --fail --silent --show-error --location 'https://altajweed.com/sitemap.xml?slo-check=1' | grep -q '<loc>https://altajweed.com/</loc>'
