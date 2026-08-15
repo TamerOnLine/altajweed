@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /.github/
 
 Sitemap: https://altajweed.com/sitemap.xml
