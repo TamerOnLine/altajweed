@@ -6,4 +6,9 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url><loc>https://altajweed.com/tajweed.html</loc><lastmod>2026-08-15</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://altajweed.com/hadith.html</loc><lastmod>2026-08-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://altajweed.com/seerah.html</loc><lastmod>2026-08-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://altajweed.com/arabic.html</loc><lastmod>2026-08-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://altajweed.com/education.html</loc><lastmod>2026-08-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
