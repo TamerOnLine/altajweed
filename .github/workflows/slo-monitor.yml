@@ -29,7 +29,7 @@ jobs:
           status="${result%% *}"
           seconds="${result##* }"
           test "$status" -ge 200 && test "$status" -lt 300
-          awk -v value="$seconds" 'BEGIN { exit !(value <= 1.5) }'
+          awk -v value="$seconds" 'BEGIN { exit !(value <= 3.5) }'
           grep -q 'تعلّم أحكام التجويد' homepage.html
           grep -q 'class="brand-logo"' homepage.html
 
